@@ -33,7 +33,7 @@ namespace Klassen
             int kontonummer = 0;
             int pin = 0;
             int menuAuswahl = 0;
-
+            double betrag = 0.0;
 
             int maxVersuche = 3;
             int anzahlVersuche = 0;
@@ -83,7 +83,6 @@ namespace Klassen
             
             while (!pinOK && !abbruch)
             {
-
                 anzahlVersuche++;
                 eingabeOK = false;
                 while (!eingabeOK && !abbruch)
@@ -153,8 +152,38 @@ namespace Klassen
                         Console.WriteLine("Geld abheben");
                         Console.WriteLine("Wieviel moechtest du abheben?: ");
                         benutzerEingabe = Console.ReadLine();
-                        kontoTemp.abheben(double.Parse(benutzerEingabe));
+
+
+                        while (!eingabeOK && !abbruch)
+                        {
+                            Console.Clear();
+                            Console.Write("Pin?: ");
+                            benutzerEingabe = Console.ReadLine();
+
+                            eingabeOK = double.TryParse(benutzerEingabe, out betrag); // warum ist das 0
+
+                            if (!eingabeOK)
+                            {
+                                Console.Write("Eingabe ungueltig");
+                                System.Threading.Thread.Sleep(1000);
+                            }
+
+                        }
+
+                        if (betrag <= kontoTemp.Kontostand)
+                        {
+                            Console.WriteLine("Betrag {0}:   Kontostand {1}", betrag, kontoTemp.Kontostand);
+                            kontoTemp.abheben(betrag);
+                        }
+                        else
+                        {
+                            // TODO kommt nicht
+                            Console.WriteLine("Soviel Geld hast du nicht du Trottel");
+                        }
+
                         kontoTemp.zeigeKontostand();
+
+
                         System.Threading.Thread.Sleep(1000);
                         break;
 
@@ -181,11 +210,6 @@ namespace Klassen
                 }
 
             }
-
-
-
-
-
 
             Console.ReadKey();
         }
