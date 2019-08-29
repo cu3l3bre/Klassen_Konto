@@ -9,6 +9,12 @@ namespace Klassen
     class Konto
     {
         //  Attribute
+
+        // readonly kann nur ein einziges mal und zwar im Konstruktor zugweiesen werdem, 
+        // wenn es sich um objektbeziegene sachen handelt,
+        // oder bei der deklaration, wenn ne statische varibale ist
+        //private readonly string iban; 
+
         private int nummer;
         private string vorname;
         private string nachname;
@@ -40,25 +46,25 @@ namespace Klassen
         public int Kontonummer
         {
             get { return nummer; }
-            set { nummer = value; }
+            //set { nummer = value; }
         }
 
         public double Kontostand
         {
             get { return stand; }
-            set { stand = value; }
+            //set { stand = value; }
         }
 
         public string Vorname
         {
             get { return vorname; }
-            set { vorname = value; }
+            //set { vorname = value; }
         }
 
         public string Nachname
         {
             get { return nachname; }
-            set { nachname = value; }
+            //set { nachname = value; }
         }
 
         public int Pin

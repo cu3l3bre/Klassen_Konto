@@ -145,46 +145,44 @@ namespace Klassen
                     case 1:
                         Console.WriteLine("Kontostand abfragen");
                         kontoTemp.zeigeKontostand();
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(3000);
                         break;
 
                     case 2:
-                        Console.WriteLine("Geld abheben");
-                        Console.WriteLine("Wieviel moechtest du abheben?: ");
-                        benutzerEingabe = Console.ReadLine();
 
-
+                        eingabeOK = false;
                         while (!eingabeOK && !abbruch)
                         {
-                            Console.Clear();
-                            Console.Write("Pin?: ");
+                            Console.WriteLine("Geld abheben");
+                            Console.WriteLine("Wieviel moechtest du abheben?: ");
                             benutzerEingabe = Console.ReadLine();
 
-                            eingabeOK = double.TryParse(benutzerEingabe, out betrag); // warum ist das 0
+                            eingabeOK = double.TryParse(benutzerEingabe, out betrag);
 
                             if (!eingabeOK)
                             {
                                 Console.Write("Eingabe ungueltig");
-                                System.Threading.Thread.Sleep(1000);
+                                System.Threading.Thread.Sleep(3000);
                             }
 
                         }
 
+                        Console.WriteLine("Betrag {0}:   Kontostand {1}", betrag, kontoTemp.Kontostand);
+
                         if (betrag <= kontoTemp.Kontostand)
                         {
-                            Console.WriteLine("Betrag {0}:   Kontostand {1}", betrag, kontoTemp.Kontostand);
+                            
                             kontoTemp.abheben(betrag);
                         }
                         else
                         {
-                            // TODO kommt nicht
                             Console.WriteLine("Soviel Geld hast du nicht du Trottel");
                         }
 
                         kontoTemp.zeigeKontostand();
 
 
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(3000);
                         break;
 
                     case 3:
@@ -193,7 +191,7 @@ namespace Klassen
                         benutzerEingabe = Console.ReadLine();
                         kontoTemp.einzahlen(double.Parse(benutzerEingabe));
                         kontoTemp.zeigeKontostand();
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(3000);
                         break;
 
                     case 999:
